@@ -1,0 +1,155 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <link rel="stylesheet" type="text/css" href="./bootstrap.css">
+</head>
+
+<body>
+    <div class='container py-4'>
+        <h2 class="text-center mb-5">Employee content</h2>
+        <div class="logged-in-content d-none">
+            <div class="d-flex justify-content-between">
+                <h4 class="mb-4">Lista e Agjentave</h4>
+                <div>
+                    <!-- Button trigger modal -->
+                    <button type="button" id="add_new_data_modal_btn" class="btn btn-primary btn-sm me-2 mb-4" data-bs-toggle="modal" data-bs-target="#add_new_data_modal">
+                        Shto
+                    </button>
+                    <div class="d-none">
+                        <!-- Button trigger modal -->
+                        <button type="button" id="edit_data_modal_btn" class="btn btn-primary btn-sm me-2 mb-4" data-bs-toggle="modal" data-bs-target="#update_item_modal">
+                            Edito
+                        </button>
+                    </div>
+                    <button id='logout-button' class="btn btn-danger btn-sm mb-4">Logout</button>
+            </div>
+            </div>
+            
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col" class="py-2">Emri</th>
+                        <th scope="col" class="py-2">Points</th>
+                        <th scope="col" class="py-2">In Office</th>
+                        <th scope="col" class="py-2"></th>
+                    </tr>
+                </thead>
+                <tbody id="dynamic_content"></tbody>
+            </table>
+
+            <!-- ADD ITEM Modal -->
+            <div class="modal fade" id="add_new_data_modal" tabindex="-1" role="dialog" aria-labelledby="add_new_data_modal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <form id='add_data_form' class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Shto te dhena</h5>
+                            <button type="button" class="close border rounded" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="ms-0 mb-1 mt-0" for="emri">Emri</label>
+                                <input type='text' name='emri' class="form-control form-control-sm" id="emri" placeholder="Shkruaj emrin">
+                            </div>
+                            <div class="form-group">
+                                <label class="ms-0 mb-1" for="piket">Piket</label>
+                                <input type='number' name='piket' class="form-control form-control-sm" id="piket" placeholder="Shkruaj piket">
+                            </div>
+                            <div class="form-group">
+                                <label class="ms-0 mb-1">
+                                    <input type="checkbox" name="in_office" id="in_office">
+                                    Ne zyre
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- UPDATE ITEM Modal -->
+            <div class="modal fade" id="update_item_modal" tabindex="-1" role="dialog" aria-labelledby="update_item_modal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <form id='edit_data_form' class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Shto te dhena</h5>
+                            <button type="button" class="close border rounded" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="id" name="row-id">
+                            <div class="form-group">
+                                <label class="ms-0 mb-1 mt-0" for="emri">Emri</label>
+                                <input type='text' name='emri' class="form-control form-control-sm" id="emri" placeholder="Shkruaj emrin">
+                            </div>
+                            <div class="form-group">
+                                <label class="ms-0 mb-1" for="piket">Piket</label>
+                                <input type='number' name='piket' class="form-control form-control-sm" id="piket" placeholder="Shkruaj piket">
+                            </div>
+                            <div class="form-group">
+                                <label class="ms-0 mb-1">
+                                    <input type="checkbox" name="in_office" id="in_office">
+                                    Ne zyre
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="logged-out-content">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-3">
+                    <form id='sign-up'>
+                        <h4>Regjistrohu</h4>
+                        <div class="form-group">
+                            <label class="ms-0 mb-1" for="exampleInputEmail1">Email address</label>
+                            <input type='email' name='email' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                          </div>
+                        <div class="form-group">
+                            <label class="ms-0 mb-1" for="exampleInputPassword1">Password</label>
+                            <input type='password' name='password' class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Save</button>
+                    </form>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-3">
+                    <form id='log-in'>
+                        <h4>Hyrja</h4>
+                        <div class="form-group">
+                            <label class="ms-0 mb-1" for="exampleInputEmail1">Email address</label>
+                            <input type='email' name='email' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                          </div>
+                        <div class="form-group">
+                            <label class="ms-0 mb-1" for="exampleInputPassword1">Password</label>
+                            <input type='password' name='password' class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Log In</button>
+                    </form>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script> -->
+    <script src="./supabase.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>

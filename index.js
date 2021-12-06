@@ -1,6 +1,6 @@
 (function() {
-  var SUPABASE_URL = 'https://eripmpddthomekbchguw.supabase.co';
-  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyNjk2NTcwNCwiZXhwIjoxOTQyNTQxNzA0fQ.mgx8LmPMwo3FDAp8tml8RXpDCAPO__rWfQJgMDHExPQ';
+  var SUPABASE_URL = 'https://vojlymsokcnklitjkzds.supabase.co';
+  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzODcyNzExNiwiZXhwIjoxOTU0MzAzMTE2fQ.8Mo9wwGSgfz5mEqG-KYeLZrhlOf2Lvqxe7vn4KFe68A';
   
   var supabase_place = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   window.userToken = null;
@@ -120,12 +120,14 @@
   }
 
   const updateDisplay = async () => {
+    const loggedInContent = document.querySelector('.logged-in-content');
+    const loggedOutContent = document.querySelector('.logged-out-content');
     if(supabase_place.auth.localStorage.length) { // user is logged in
       const userData = JSON.parse(supabase_place.auth.localStorage['supabase.auth.token']);
-      document.querySelector('.logged-in-content').classList.add('d-block');
-      document.querySelector('.logged-in-content').classList.remove('d-none');
-      document.querySelector('.logged-out-content').classList.add('d-none');
-      document.querySelector('.logged-out-content').classList.remove('d-block');
+      loggedInContent.classList.add('d-block');
+      loggedInContent.classList.remove('d-none');
+      loggedOutContent.classList.add('d-none');
+      loggedOutContent.classList.remove('d-block');
       let { data, error } = await supabase_place
           .from("agents_list")
           .select("*")
@@ -134,10 +136,10 @@
       console.log(data);
       dynamic_content.innerHTML = build_list_of_employees(data);
     } else { // user is not logged in
-      document.querySelector('.logged-in-content').classList.add('d-none');
-      document.querySelector('.logged-in-content').classList.remove('d-block');
-      document.querySelector('.logged-out-content').classList.add('d-block');
-      document.querySelector('.logged-out-content').classList.remove('d-none');
+      loggedInContent.classList.add('d-none');
+      loggedInContent.classList.remove('d-block');
+      loggedOutContent.classList.add('d-block');
+      loggedOutContent.classList.remove('d-none');
       dynamic_content.innerHTML = build_list_of_employees([]);
     }
   }

@@ -1,4 +1,4 @@
-(function() {
+(async function() {
   var SUPABASE_URL = 'https://vojlymsokcnklitjkzds.supabase.co';
   var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzODcyNzExNiwiZXhwIjoxOTU0MzAzMTE2fQ.8Mo9wwGSgfz5mEqG-KYeLZrhlOf2Lvqxe7vn4KFe68A';
   

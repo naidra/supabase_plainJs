@@ -164,10 +164,20 @@
 
     const wsSupabase = await supabase_place
       .from('agents_list')
-      .on("*", (data) => console.log('Data: ', data))
-      .subscribe((od) => {
-        console.log(`data: ${od}`);
-      });
+      .on("*", (data) => {
+        const { eventType } = data;
+        switch (eventType) {
+          case "UPDATE":
+            console.log('Updated');
+          break;
+          case "INSERT":
+            console.log('Inserted');
+            break;
+          case "DELETE":
+            console.log('Deleted');
+            break;
+        }
+      }).subscribe();
 
     // window.wsSupabase = wsSupabase;
 
